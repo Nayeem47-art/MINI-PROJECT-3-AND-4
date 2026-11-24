@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spaceflight News Explorer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="container">
+      <h1>Spaceflight News Explorer</h1>
+      <p class="subtitle">Latest space news from the Spaceflight News API</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="controls-bar" aria-label="Article filters">
+      <div class="control-group search-group">
+        <label for="search-input">Search Articles</label>
+        <input
+          type="search"
+          id="search-input"
+          placeholder="Search by headline or summary..."
+          autocomplete="off"
+        />
+      </div>
+
+      <div class="control-group">
+        <label for="source-select">News Source</label>
+        <select id="source-select">
+          <option value="all">All Sources</option>
+        </select>
+      </div>
+
+      <div class="control-actions">
+        <button type="button" id="bookmarks-toggle-btn" class="btn btn-secondary" aria-pressed="false">
+          Saved (<span id="saved-count">0</span>)
+        </button>
+        <button type="button" id="clear-storage-btn" class="btn btn-outline">
+          Clear Saved Data
+        </button>
+      </div>
+    </section>
+
+    <div id="loading-state" class="state-box" role="status">
+      <div class="spinner" aria-hidden="true"></div>
+      <p>Fetching spaceflight articles...</p>
+    </div>
+
+    <div id="error-state" class="state-box error-box hidden" role="alert">
+      <p id="error-message">Unable to load articles.</p>
+      <button type="button" id="retry-btn" class="btn btn-primary">Retry</button>
+    </div>
+
+    <div id="empty-state" class="state-box hidden">
+      <p>No articles match your current search or filter.</p>
+    </div>
+
+    <section id="articles-grid" class="articles-grid" aria-live="polite"></section>
+  </main>
+
+  <dialog id="article-modal" class="modal">
+    <div class="modal-content">
+      <button type="button" id="close-modal-btn" class="close-btn" aria-label="Close modal">&times;</button>
+      <div id="modal-body"></div>
+    </div>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
